@@ -1,9 +1,18 @@
-const mongoose = require('mongoose')
+// Express
+const express = require('express');
+const app = express();
 
-const url = 'mongodb://localhost:27017/database'
+// Database
 
-const connect = mongoose.connect(url);
+const mongoose = require('mongoose');
+const uri = require('./config/database').mongoURI;
 
-connect.then(db => {
-    console.log('server is running now');
-}, (err) => {console.log(err)});
+port = 3000;
+
+// Connection to mongoDb
+
+mongoose.connect(uri, {useNewUrlParser: true})
+.then(() => console.log('MondoDb connected...')).catch(err => console.log(err))
+
+
+app.listen(port, console.log(`Server is running on port ${port}`))
